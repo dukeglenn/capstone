@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="topnav">
+        <a class="active" href="#home">Astraea</a>
+        <a href="contact.html">Contact</a>
+        <a href="#about">About</a>
+    </div>
+    <div class="chat-container">
+      <h2 class="chat-header">Who's chatting...</h2>
+
+      <div class="chat-messages"></div>
+        <div class="message blue-bg">
+            <div class = "message-sender">John</div>
+            <div class="message-text">Hey Jane, what's up?</div>
+            <div class="message-timestamp">10:30</div>
+        </div>
+        <div class="message gray-bg">
+            <div class = "message-sender">Jane</div>
+            <div class = "message-text">Blah blah blah</div>
+            <div class = "message-timestamp">10:34</div>
+        </div>
+      <form class="chat-input-form">
+        <input type="text" class="chat-input" required placeholder="Type here, John..." />
+        <button type="submit" class="button send-button">Send</button>
+      </form>
+      <button class="button clear-chat-button">Clear Chat</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
