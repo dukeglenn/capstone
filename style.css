@@ -1,194 +1,150 @@
+/* General Styles */
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: linear-gradient(
-    23deg,
-    hsl(49deg 100% 69%) 0%,
-    hsl(16deg 80% 61%) 2%,
-    hsl(330deg 81% 34%) 12%,
-    hsl(259deg 100% 15%) 50%,
-    hsl(212deg 100% 25%) 88%,
-    hsl(197deg 100% 30%) 98%,
-    hsl(183deg 79% 36%) 100%
-  );
-  height: 100vh;
-}
-
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
+  background-color: #03233d;
+  margin: 0;
+  padding: 0;
   color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
+}
+
+/* Navigation Bar */
+.topnav {
+  background-color: #031a2d;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 10px;
+}
+
+.topnav a {
+  color: #f2f2f2;
   text-decoration: none;
+  padding: 14px 16px;
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
-  color: black;
+  color: #031a2d;
 }
 
-/* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: black;
   color: white;
 }
 
-/* User Info Modal */
-.user-info-modal {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(21, 32, 43, 0.9);
+/* Main Container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 20px;
+  height: 80vh; /* Adjust based on the height of the navbar */
+  gap: 20px;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1; /* Equal width with the right section */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: flex-end; /* Text stays at the bottom */
+  padding: 20px;
+  background: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+    url('AstraeaTransparent.jpg'); /* Replace 'logo.png' with your image file */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  height: 100%;
+  color: #f2f2f2;
+}
+
+.left-section h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.left-section p {
+  margin: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.about-btn {
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #04aa6d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 2; /* Ensures the button stays visible */
+}
+
+.about-btn:hover {
+  background-color: #037d52;
+}
+
+/* For blending */
+.left-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%; /* Top half for the image */
+  background: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent); /* Smooth fade effect */
   z-index: 1;
+}
+
+/* Right Section */
+.right-section {
+  flex: 1; /* Equal width with the left section */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #031a2d;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  height: 100%; /* Ensures it matches the container height */
+  padding: 20px;
 }
 
-.modal-content {
-  padding: 1em;
-  background: #15202b;
-  border-radius: 0.5em;
-  color: #fff;
-  box-shadow: 0 0 0.5em rgba(103, 103, 103, 0.2);
-  margin: 1em;
+#problem {
+  width: 100%;
+  height: 90%; /* Fills most of the right section */
+  padding: 15px;
+  font-size: 16px;
+  background-color: #031a2d;
+  color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.user-info-form {
-  display: flex;
-  flex-direction: column;
+#problem:focus {
+  outline: none;
+  border-color: #04aa6d;
+  box-shadow: 0 0 5px rgba(4, 170, 109, 0.5);
 }
 
-.user-info-form input {
-  margin-bottom: 1em;
-  padding: 0.75em;
-  border: 0.0625em solid #38444d;
-  background: #1c2938;
-  border-radius: 0.5em;
-  color: #fff;
-}
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.user-info-form input::placeholder {
-  color: #ffffffb3;
-}
-
-/* Button */
-.join-button {
-  padding: 0.75em;
-  border-radius: 0.5em;
-  background: #17bf63;
-  color: #fff;
-  cursor: pointer;
-}
-
-.button {
-  border: none;
-  padding: 0.625em;
-  border-radius: 0.5em;
-  cursor: pointer;
-}
-
-.button:hover {
-  filter: brightness(0.9);
-}
-
-.button:active {
-  transform: translateY(2px);
-}
-
-.chat-container {
-  background: #15202b;
-  border-radius: 0.5em;
-  padding: 0.5em 1.25em;
-  margin: auto;
-  max-width: 37.5em;
-  height: 37.5em;
-  box-shadow: 0 0 1.25em 0.5em #c3c3c333;
-}
-
-.chat-header {
-  margin-bottom: 1em;
-  color: #fff;
-}
-
-.chat-header h2 {
-  font-size: 1.25em;
-  font-weight: bold;
-}
-
-.chat-messages {
-  height: 23em;
-  overflow-y: scroll;
-}
-
-.chat-messages::-webkit-scrollbar {
-  display: none;
-}
-
-.message {
-  padding: 0.625em;
-  border-radius: 1em;
-  margin-bottom: 0.625em;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-}
-
-.message-sender {
-  font-weight: bold;
-  margin-bottom: 0.31em;
-}
-
-.message-text {
-  font-size: 1em;
-  margin-bottom: 0.31em;
-  word-wrap: break-word;
-}
-
-.message-timestamp {
-  font-size: 0.75em;
-  text-align: right;
-}
-
-.blue-bg {
-  background-color: #1c9bef;
-}
-
-.gray-bg {
-  background-color: #3d5365;
-}
-
-.chat-input-form {
-  display: flex;
-  align-items: center;
-  margin-top: 2em;
-  gap: 0.625em;
-}
-
-.chat-input {
-  padding: 0.625em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: #f5f5f5;
-  color: #333;
-  font-size: 1em;
-  flex-grow: 1;
-}
-
-.send-button {
-  background-color: #1c9bef;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.clear-chat-button {
-  display: block;
-  margin: 2.5em auto;
+  .left-section,
+  .right-section {
+    width: 90%;
+    margin-bottom: 20px;
+  }
 }
