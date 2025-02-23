@@ -3,6 +3,14 @@ import streamlit as st
 # Set the page layout to wide
 st.set_page_config(page_title="Astraea", layout="wide")
 
+st.markdown("""
+    <style>
+        body {
+            background-color: #2b576d !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Custom CSS for styling the navbar and adding a 100px buffer at the top
 st.markdown("""
     <style>
@@ -46,24 +54,6 @@ st.markdown("""
         .main-container {
             margin-top: 10px; /* 10px buffer applied to navbar & content */
         }
-
-        .left-section {
-            background: 
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
-                url('Astraea_Logo.jpg'); 
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            padding: 20px;
-            color: white;
-        }
-
-        /* Text Overlay */
-        .text-box {
-            background: rgba(0, 0, 0, 0.6); /* Dark overlay for better readability */
-            padding: 15px;
-            border-radius: 8px;
-        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -83,17 +73,32 @@ st.markdown("""
 col1, col2 = st.columns([1, 1])  # Adjust ratio as needed
 
 # Left section - Welcome message
+# Left Section - Background Image with Overlay Text
 with col1:
-    st.header("Welcome to Astraea")
-    st.write("""
-        Astraea is committed to enhancing the legal landscape by harnessing the power of 
-        machine learning to provide clear, data-driven insights on legal case outcomes 
-        and financial information. We empower individuals and families to make informed 
-        decisions and connect them to the right legal solutions and professionals, 
-        making justice more accessible and transparent for all.
-    """)
-    st.button("About Us")
+    # Load an image (Replace with your actual image path)
+    image_url = "Astraea_Logo.png"  # Example image
+    st.image(image_url, use_container_width=True)
 
+    # Overlay Text (Placed in a markdown box)
+    st.markdown("""
+        <div style="
+            position: relative; 
+            top: -250px; 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 20px; 
+            border-radius: 10px;
+            color: white;
+            text-align: center;">
+            <h1>Welcome to Astraea</h1>
+            <p>
+                Astraea is committed to enhancing the legal landscape by harnessing the power of 
+                machine learning to provide clear, data-driven insights on legal case outcomes 
+                and financial information. We empower individuals and families to make informed 
+                decisions and connect them to the right legal solutions and professionals, 
+                making justice more accessible and transparent for all.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
 # Right section - User input box
 with col2:
     problem = st.text_area("Tell us about your issue")
