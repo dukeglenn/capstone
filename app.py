@@ -110,3 +110,5 @@ with col2:
 
     dropdown2 = st.selectbox('Select Number of Passengers in your vehicle', ['1', '2', '3','4+'])
     dropdown3 = st.selectbox('ORIENTATION PLACEHOLDER', ['Driving Straight', 'Stopped', 'Merging', 'Turning Left', 'Turning Right'])
+    if st.button("Submit"):
+        st.success("Your issue has been recorded. A legal expert will review it soon.")
