@@ -1,4 +1,12 @@
 import streamlit as st
+import pickle
+import numpy as np
+import pandas as pd
+
+
+model = pickle.load(open('model.pkl', 'rb'))
+
+# def predict_negligence()
 
 # Set the page layout to wide
 st.set_page_config(page_title="Astraea", layout="wide")
@@ -66,6 +74,7 @@ st.markdown("""
         <a class="active" href="#">Astraea</a>
         <a href="#">Contact</a>
         <a href="#">About</a>
+        <a href="#">Legal Info</a>
     </div>
 """, unsafe_allow_html=True)
 
@@ -103,12 +112,24 @@ with col1:
 with col2:
     problem = st.text_area("Tell us about your issue")
 
-    dropdown1 = st.selectbox("Select an crash type", ['Single Vehicle', 'Two Vehicles', 'Three or More Vehicles'])
+    numCars = st.selectbox("Select an crash type", ['Single Vehicle', 'Two Vehicles', 'Three or More Vehicles'])
 
-    if dropdown1 == 'Two Vehicles':
-        dropdown4 = st.selectbox("Select crash type", ['Rear End Collision', 'T-Bone Collision', 'Side to Side', 'Head-On Collision', 'Other'])
+    if numCars == 'Two Vehicles':
+       crashType = st.selectbox("Select crash type", ['Rear End Collision', 'T-Bone Collision', 'Side to Side', 'Head-On Collision', 'Other'])
 
-    dropdown2 = st.selectbox('Select Number of Passengers in your vehicle', ['1', '2', '3','4+'])
-    dropdown3 = st.selectbox('ORIENTATION PLACEHOLDER', ['Driving Straight', 'Stopped', 'Merging', 'Turning Left', 'Turning Right'])
+    numPassengers = st.selectbox('Select Number of Passengers in your vehicle', ['1', '2', '3','4+'])
+    actionAtCrash = st.selectbox('What were you doing at the time?', ['Driving Straight', 'Stopped', 'Merging', 'Turning Left', 'Turning Right'])
+
+    negligence = st.selectbox('Was There Negligence?', ['Yes', 'No'])
+    
+    if negligence == 'Yes':
+        negligenceType = st.selectbox('What type of negligence?', ['Driver distracted from the road in some way (texting and driving)', 'Driver impaired by drugs/alcohol',
+        'Driver made unsafe lane change and slams into another vehicle', 'Fails to yield a right of way, resulting in car crash', 'N/A'])
+    
+    ignoredSign = st.selectbox('Was the accident a result of an ignored red light or stop sign?', ['Yes, I ignored the traffic signage', 'Yes, the other vehicle ignored the traffic signage', 'Yes, both vehicles ignored the traffic signage', 'No, no one ignored traffic signage'])
+
+    biker = st.selectbox('Was a biker involved in the accident?', ['Yes', 'No'])
+
+
     if st.button("Submit"):
-        st.success("Your issue has been recorded. A legal expert will review it soon.")
+        st.success("Your issue has been recorded. We are finding the relevant information.")
