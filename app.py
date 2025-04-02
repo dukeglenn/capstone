@@ -110,26 +110,34 @@ with col1:
     """, unsafe_allow_html=True)
 # Right section - User input box
 with col2:
-    problem = st.text_area("Tell us about your issue")
+    perpVictim = st.selectbox("Did you hit the other car or did you get hit?", ['I got hit', 'I hit them'])
 
-    numCars = st.selectbox("Select an crash type", ['Single Vehicle', 'Two Vehicles', 'Three or More Vehicles'])
-
-    if numCars == 'Two Vehicles':
-       crashType = st.selectbox("Select crash type", ['Rear End Collision', 'T-Bone Collision', 'Side to Side', 'Head-On Collision', 'Other'])
-
-    numPassengers = st.selectbox('Select Number of Passengers in your vehicle', ['1', '2', '3','4+'])
-    actionAtCrash = st.selectbox('What were you doing at the time?', ['Driving Straight', 'Stopped', 'Merging', 'Turning Left', 'Turning Right'])
-
-    negligence = st.selectbox('Was There Negligence?', ['Yes', 'No'])
-    
-    if negligence == 'Yes':
-        negligenceType = st.selectbox('What type of negligence?', ['Driver distracted from the road in some way (texting and driving)', 'Driver impaired by drugs/alcohol',
-        'Driver made unsafe lane change and slams into another vehicle', 'Fails to yield a right of way, resulting in car crash', 'N/A'])
-    
-    ignoredSign = st.selectbox('Was the accident a result of an ignored red light or stop sign?', ['Yes, I ignored the traffic signage', 'Yes, the other vehicle ignored the traffic signage', 'Yes, both vehicles ignored the traffic signage', 'No, no one ignored traffic signage'])
-
-    biker = st.selectbox('Was a biker involved in the accident?', ['Yes', 'No'])
-
+    if perpVictim == 'I got hit':
+        victimNegligence = st.selectbox("Were you negligent?", ['Yes', 'No'])
+        victimEmDoc = st.selectbox("Were you faced with an emergency?", ['Yes', 'No'])
+        victimInjury = st.selectbox("Were you seriously injured?", ['Yes', 'No'])
+        perpNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
+        perpEmDoc = st.selectbox("Were they faced with an emergency?", ['Yes', 'No'])
+        perpInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
+    elif perpVictim == 'I hit them':
+        victimNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
+        victimEmDoc = st.selectbox("Were they faced with an emergency?", ['Yes', 'No'])
+        victimInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
+        perpNegligence = st.selectbox("Were you negligent?", ['Yes', 'No'])
+        perpEmDoc = st.selectbox("Were you faced with an emergency?", ['Yes', 'No'])
+        perpInjury = st.selectbox("Were you seriously injured?", ['Yes', 'No'])
 
     if st.button("Submit"):
-        st.success("Your issue has been recorded. We are finding the relevant information.")
+        def convert_to_numeric(value):
+            return 1 if value == "Yes" else 0
+        
+        features = pd.DataFrame({
+            'victim_negligence': [convert_to_numeric(victimNegligence)],
+            'victim_em_doc': [convert_to_numeric(victimEmDoc)],
+            'victim_serious_injury': [convert_to_numeric(victimInjury)],
+            'perp_negligence': [convert_to_numeric(perpNegligence)],
+            'perp_em_doc': [convert_to_numeric(perpEmDoc)],
+            'perp_serious_injury': [convert_to_numeric(perpInjury)]
+        })
+        prediction = model.predict(features)
+        st.success(f"Prediction: {prediction[0]}")

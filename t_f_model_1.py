@@ -95,6 +95,6 @@ print(f'Prediction for example: {label_encoder.inverse_transform(prediction)[0]}
 
 file = open('model.pkl', 'wb')
 
-pickle.dump(file_path, file)
+pickle.dump(best_model, file)
 
 file.close()
