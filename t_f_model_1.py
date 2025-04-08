@@ -94,8 +94,7 @@ example = pd.DataFrame({
 prediction = best_model.predict(example)
 print(f'Prediction for example: {label_encoder.inverse_transform(prediction)[0]}')
 
-file = open('model.pkl', 'wb')
-
-pickle.dump(best_model, file)
+with open('model.pkl', 'wb') as file:
+    pickle.dump(model, file)
 
 file.close()
