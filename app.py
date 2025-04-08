@@ -8,7 +8,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, 'model.pkl')
 
 # Load the model
-with open(model_path, 'rb') as file:
+with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # def predict_negligence()
