@@ -1,10 +1,15 @@
 import streamlit as st
+import os
 import pickle
 import numpy as np
 import pandas as pd
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, 'model.pkl')
 
-model = pickle.load(open('model.pkl', 'rb'))
+# Load the model
+with open(model_path, 'rb') as file:
+    model = pickle.load(file)
 
 # def predict_negligence()
 
