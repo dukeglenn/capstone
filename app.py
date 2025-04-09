@@ -146,4 +146,4 @@ with col2:
             'perp_serious_injury': [convert_to_numeric(perpInjury)]
         })
         prediction = model.predict(features)
-        st.success(f"Prediction: {prediction[0]}")
+        st.success(f"Based on past cases, you have a {prediction[0]*100}% chance of winning your case. This is not legal advice.")
