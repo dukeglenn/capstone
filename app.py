@@ -120,14 +120,14 @@ with col2:
 
     if perpVictim == 'I got hit':
         victimNegligence = st.selectbox("Were you negligent?", ['Yes', 'No'])
-        victimEmDoc = st.selectbox("Were you faced with an emergency?", ['Yes', 'No'])
+        victimEmDoc = st.selectbox("Were you faced with unexpected circumstances that you had to avoid, which directly caused the accident?", ['Yes', 'No'])
         victimInjury = st.selectbox("Were you seriously injured?", ['Yes', 'No'])
         perpNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
         perpEmDoc = st.selectbox("Were they faced with an emergency?", ['Yes', 'No'])
         perpInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
     elif perpVictim == 'I hit them':
         victimNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
-        victimEmDoc = st.selectbox("Were they faced with an emergency?", ['Yes', 'No'])
+        victimEmDoc = st.selectbox("Were they faced with unexpected circumstances that they had to avoid, which directly caused the accident?", ['Yes', 'No'])
         victimInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
         perpNegligence = st.selectbox("Were you negligent?", ['Yes', 'No'])
         perpEmDoc = st.selectbox("Were you faced with an emergency?", ['Yes', 'No'])
@@ -145,5 +145,6 @@ with col2:
             'perp_em_doc': [convert_to_numeric(perpEmDoc)],
             'perp_serious_injury': [convert_to_numeric(perpInjury)]
         })
-        prediction = model.predict(features)
-        st.success(f"Based on past cases, you have a {prediction[0]*100}% chance of winning your case. This is not legal advice.")
+        prediction = model.predict_proba(features)
+        win_prob = prediction[0][1]
+        st.success(f"Based on past cases, you have a {win_prob*100:.2f}% chance of winning your case. This is not legal advice.")
