@@ -5,10 +5,14 @@ import sklearn
 import numpy as np
 import pandas as pd
 
-query_params = st.experimental_get_query_params()
+query_params = st.query_params
 
-if query_params.get("page") == ["Legal_Info"]:
-    st.switch_page("pages/LegalInfo.py")
+if query_params.get("page") == ["Legal_Information"]:
+    st.switch_page("pages/Legal_Information.py")
+elif query_params.get("page") == ["About_Us"]:
+    st.switch_page("pages/About_Us.py")
+elif query_params.get("page") == ["Contact"]:
+    st.switch_page("pages/Contact.py")
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, 'model.pkl')
@@ -74,19 +78,6 @@ st.markdown("""
             margin-top: 10px; /* 10px buffer applied to navbar & content */
         }
     </style>
-""", unsafe_allow_html=True)
-
-# Space below navbar to avoid content being hidden
-st.markdown("<div class='main-container'>", unsafe_allow_html=True)
-
-# Navigation Bar
-st.markdown("""
-    <div class="topnav">
-        <a class="active" href="#">Astraea</a>
-        <a href="#">Contact</a>
-        <a href="#">About</a>
-        <a href="/?page=Legal_Info">Legal Info</a>
-    </div>
 """, unsafe_allow_html=True)
 
 # Layout with two columns
