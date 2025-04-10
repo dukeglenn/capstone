@@ -35,7 +35,7 @@ cols = st.columns(4)
 
 for col, member in zip(cols, team_members):
     with col:
-        st.image(member["image"], caption=member["name"], use_column_width=True)
+        st.image(member["image"], caption=member["name"], use_container_width=True)
         st.subheader(member["name"])
         st.write(f"**Hometown:** {member['hometown']}")
         st.write(member["bio"])
