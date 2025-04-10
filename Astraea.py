@@ -5,6 +5,11 @@ import sklearn
 import numpy as np
 import pandas as pd
 
+query_params = st.experimental_get_query_params()
+
+if query_params.get("page") == ["Legal_Info"]:
+    st.switch_page("pages/LegalInfo.py")
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, 'model.pkl')
 
@@ -80,7 +85,7 @@ st.markdown("""
         <a class="active" href="#">Astraea</a>
         <a href="#">Contact</a>
         <a href="#">About</a>
-        <a href="#">Legal Info</a>
+        <a href="/?page=Legal_Info">Legal Info</a>
     </div>
 """, unsafe_allow_html=True)
 
@@ -123,14 +128,14 @@ with col2:
         victimEmDoc = st.selectbox("Were you faced with unexpected circumstances that you had to avoid, which directly caused the accident?", ['Yes', 'No'])
         victimInjury = st.selectbox("Were you seriously injured?", ['Yes', 'No'])
         perpNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
-        perpEmDoc = st.selectbox("Were they faced with an emergency?", ['Yes', 'No'])
+        perpEmDoc = st.selectbox("Were they faced with unexpected circumstances that they had to avoid, which directly caused the accident?", ['Yes', 'No'])
         perpInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
     elif perpVictim == 'I hit them':
         victimNegligence = st.selectbox("Were they negligent?", ['Yes', 'No'])
         victimEmDoc = st.selectbox("Were they faced with unexpected circumstances that they had to avoid, which directly caused the accident?", ['Yes', 'No'])
         victimInjury = st.selectbox("Were they seriously injured?", ['Yes', 'No'])
         perpNegligence = st.selectbox("Were you negligent?", ['Yes', 'No'])
-        perpEmDoc = st.selectbox("Were you faced with an emergency?", ['Yes', 'No'])
+        perpEmDoc = st.selectbox("Were you faced with unexpected circumstances that you had to avoid, which directly caused the accident?", ['Yes', 'No'])
         perpInjury = st.selectbox("Were you seriously injured?", ['Yes', 'No'])
 
     if st.button("Submit"):
