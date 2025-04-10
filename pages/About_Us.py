@@ -1,58 +1,41 @@
 import streamlit as st
 
-st.set_page_config(page_title="Legal Info", layout="wide")
+st.set_page_config(page_title="About Us", layout="wide")
 
-# Custom CSS styling
-st.markdown("""
-    <style>
-        .title {
-            font-size: 48px;
-            font-weight: bold;
-            color: #2b576d;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 24px;
-            color: #4584a4;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .body-text {
-            font-size: 16px;
-            color: #333333;
-            line-height: 1.6;
-        }
-    </style>
-""", unsafe_allow_html=True)
+st.title("Meet the Team")
 
-# Content
-st.markdown('<div class="title">Legal Information</div>', unsafe_allow_html=True)
+team_members = [
+    {
+        "name": "Killian Daly",
+        "hometown": "Hometown 1",
+        "bio": "This is a short biography of team member 1.",
+        "image": "path_to_image_1.jpg"
+    },
+    {
+        "name": "Duke Glenn",
+        "hometown": "Hometown 2",
+        "bio": "This is a short biography of team member 2.",
+        "image": "path_to_image_2.jpg"
+    },
+    {
+        "name": "Henry Miller",
+        "hometown": "Hometown 3",
+        "bio": "This is a short biography of team member 3.",
+        "image": "path_to_image_3.jpg"
+    },
+    {
+        "name": "Reid Miller",
+        "hometown": "Hometown 4",
+        "bio": "This is a short biography of team member 4.",
+        "image": "path_to_image_4.jpg"
+    }
+]
 
-st.markdown('<div class="subtitle">Disclaimer</div>', unsafe_allow_html=True)
-st.markdown("""
-<div class="body-text">
-The information provided by Astraea is for general informational purposes only and should not be construed as legal advice. 
-While our predictions are based on data-driven models and historical cases, they do not account for the full complexity of any specific legal situation.
-</div>
-""", unsafe_allow_html=True)
+cols = st.columns(4)
 
-st.markdown('<div class="subtitle">No Attorney-Client Relationship</div>', unsafe_allow_html=True)
-st.markdown("""
-<div class="body-text">
-Use of this platform does not create an attorney-client relationship. If you require legal assistance, we recommend contacting a licensed attorney in your jurisdiction.
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown('<div class="subtitle">Data Sources</div>', unsafe_allow_html=True)
-st.markdown("""
-<div class="body-text">
-Our predictions are generated using publicly available legal datasets and machine learning algorithms. All efforts are made to ensure the accuracy of the data, but results are not guaranteed.
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown('<div class="subtitle">Privacy Policy</div>', unsafe_allow_html=True)
-st.markdown("""
-<div class="body-text">
-We value your privacy. No personal or case-specific information is stored or shared through the Astraea platform unless explicitly authorized by the user.
-</div>
-""", unsafe_allow_html=True)
+for col, member in zip(cols, team_members):
+    with col:
+        st.image(member["image"], caption=member["name"], use_column_width=True)
+        st.subheader(member["name"])
+        st.write(f"**Hometown:** {member['hometown']}")
+        st.write(member["bio"])
