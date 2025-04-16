@@ -132,7 +132,8 @@ with col2:
     if st.button("Submit"):
         def convert_to_numeric(value):
             return 1 if value == "Yes" else 0
-        
+
+    # Prepare input regardless of perspective
         features = pd.DataFrame({
             'victim_negligence': [convert_to_numeric(victimNegligence)],
             'victim_em_doc': [convert_to_numeric(victimEmDoc)],
@@ -141,8 +142,15 @@ with col2:
             'perp_em_doc': [convert_to_numeric(perpEmDoc)],
             'perp_serious_injury': [convert_to_numeric(perpInjury)]
         })
+
+    # Get probability of the "plaintiff" winning
         prediction = model.predict_proba(features)[0][1]
-        confidence = min(prediction * 100, 99.99)  # Cap the output at 99.9%
+
+    # Flip the probability if user was the one who hit (likely defendant)
+        if perpVictim == "I hit them":
+            prediction = 1 - prediction
+
+        confidence = min(prediction * 100, 99.99)  # Cap at 99.99%
         st.success(f"Based on past cases, you have a {confidence:.2f}% chance of winning your case.")
 
 st.markdown("""
