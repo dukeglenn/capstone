@@ -19,7 +19,7 @@ team_members = [
     {
         "name": "Henry Miller",
         "hometown": "Short Hills, NJ",
-        "bio": "This is a short biography of team member 3.",
+        "bio": "Henry is graduating with a triple major in Mathematics, Computer Science, and Economics. He has hands-on experience in data analytics and product operations, having worked with teams across trading, marketing, and finance at Betr. Henry thrives in fast-paced environments, bringing a sharp analytical mindset, strong technical skills, and a collaborative approach to solving complex problems. His recent work includes applying machine learning techniques to build tools that deliver actionable insights",
         "image": "images/HenryPic.png"
     },
     {
