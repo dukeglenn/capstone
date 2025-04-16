@@ -1,41 +1,40 @@
 import streamlit as st
 
 st.set_page_config(page_title="About Us", layout="wide")
-
-st.title("Meet the Team")
+st.title("About Us")
 
 team_members = [
     {
         "name": "Killian Daly",
-        "hometown": "Hometown 1",
-        "bio": "This is a short biography of team member 1.",
-        # "image": "path_to_image_1.jpg"
+        "hometown": "Irvington, NY",
+        "bio": "Killian Daly is a Tulane senior (class of 2025), double majoring in computer science and political science, with a minor in strategic management.  He enjoys analyzing geopolitical shifts and new policy developments, especially at the intersection of  technology and the law. He has worked for the  New York State Supreme Court as a legal researcher, and Northwestern University's Deportation Research Clinic as a project manager and chief data engineer. Killian aims to pursue law school and hopes to contribute to the development of ethical policy solutions in the digital age. In his spare time he enjoys guitar and creative writing.",
+        "image": "images/KillianPic.png"
     },
     {
         "name": "Duke Glenn",
-        "hometown": "Hometown 2",
-        "bio": "This is a short biography of team member 2.",
-        # "image": "path_to_image_2.jpg"
+        "hometown": "Atlanta, GA",
+        "bio": "Duke Glenn is a senior at Tulane majoring in Finance and Computer Science. He plans on attending law school in the near future and working towards a career in intellectual property protection. He enjoys analyzing the intersection between cutting-edge technology and the law, and hopes to further explore this area.",
+        "image": "images/DukePic.png"
     },
     {
         "name": "Henry Miller",
-        "hometown": "Hometown 3",
+        "hometown": "Short Hills, NJ",
         "bio": "This is a short biography of team member 3.",
-        # "image": "path_to_image_3.jpg"
+        "image": "images/HenryPic.png"
     },
     {
         "name": "Reid Miller",
-        "hometown": "Hometown 4",
-        "bio": "This is a short biography of team member 4.",
-        # "image": "path_to_image_4.jpg"
+        "hometown": "St Louis, MO",
+        "bio": "Reid Miller is a senior at Tulane majoring in Economics, Mathematics, and Computer Science with a minor in Political Science. On campus, he has served as a Vice President of the university’s chapter of Alpha Kappa Psi, a professional business fraternity, and as Director of Training for the Model United Nations team. Upon graduation, he will join RSM’s Chicago headquarters as a consultant in their Enterprise Resource Planning (ERP) practice, with plans to pursue graduate studies in Economics in the future.",
+        "image": "images/ReidPic.png"
     }
 ]
 
 cols = st.columns(4)
 
-for col, member in zip(cols, team_members):
-    with col:
-        # st.image(member["image"], caption=member["name"], use_container_width=True)
+for i, member in enumerate(team_members):
+    with cols[i]:
+        st.image(member["image"], width=400)  # Adjust width as needed
         st.subheader(member["name"])
         st.write(f"**Hometown:** {member['hometown']}")
         st.write(member["bio"])
