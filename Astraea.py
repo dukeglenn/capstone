@@ -141,7 +141,7 @@ with col2:
             'perp_em_doc': [convert_to_numeric(perpEmDoc)],
             'perp_serious_injury': [convert_to_numeric(perpInjury)]
         })
-        prediction = model.predict(features)[0]
+        prediction = model.predict_proba(features)[0][1]
         confidence = min(prediction * 100, 99.99)  # Cap the output at 99.9%
         st.success(f"Based on past cases, you have a {confidence:.2f}% chance of winning your case.")
 
