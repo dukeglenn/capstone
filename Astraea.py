@@ -141,6 +141,26 @@ with col2:
             'perp_em_doc': [convert_to_numeric(perpEmDoc)],
             'perp_serious_injury': [convert_to_numeric(perpInjury)]
         })
-        prediction = model.predict_proba(features)
-        win_prob = prediction[0][1]
-        st.success(f"Based on past cases, you have a {win_prob*100:.2f}% chance of winning your case. This is not legal advice.")
+        prediction = model.predict(features)[0]
+        confidence = min(prediction * 100, 99.99)  # Cap the output at 99.9%
+        st.success(f"Based on past cases, you have a {confidence:.2f}% chance of winning your case.")
+
+st.markdown("""
+    <style>
+        .disclaimer {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: gray;
+            text-align: center;
+            z-index: 9999;
+        }
+    </style>
+
+    <div class="disclaimer">
+        ⚖️ This is not legal advice. Astraea provides general information based on past case data.
+    </div>
+""", unsafe_allow_html=True)
+
