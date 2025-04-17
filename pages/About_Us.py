@@ -28,6 +28,7 @@ st.markdown("""
         .icon {
             height: 24px;
             vertical-align: middle;
+            filter: brightness(0) saturate(100%) invert(85%) sepia(20%) saturate(600%) hue-rotate(180deg) brightness(100%) contrast(90%);
         }
     </style>
 """, unsafe_allow_html=True)

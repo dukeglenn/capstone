@@ -1,76 +1,60 @@
 import streamlit as st
 
-st.set_page_config(page_title="Contact", layout="wide")
+st.set_page_config(page_title="Contact Representation", layout="wide")
 
+# Custom CSS styling
 st.markdown("""
     <style>
-        .lawyer-card {
-            background: linear-gradient(135deg, #031a2d, #1f2a36);
-            border: 1px solid #4a90e2;
-            border-radius: 10px;
-            padding: 20px;
-            color: white;
-            text-align: center;
-            margin: 10px;
-            height: 150px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .lawyer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.6);
-        }
-
-        .lawyer-link {
-            color: #4a90e2;
+        .title {
+            font-size: 48px;
             font-weight: bold;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 16px;
-            border: 2px solid #4a90e2;
-            border-radius: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .lawyer-link:hover {
-            background-color: #4a90e2;
-            color: white;
-        }
-
-        h2 {
-            color: white;
-            font-size: 18px;
+            color: #2b576d;
             margin-bottom: 10px;
         }
-
-        .header {
-            font-size: 36px;
-            font-weight: 700;
-            color: white;
-            text-align: center;
-            margin-bottom: 30px;
+        .subtitle {
+            font-size: 24px;
+            color: #4584a4;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
-
-        .desc {
-            color: #ddd;
-            text-align: center;
-            margin-bottom: 40px;
+        .body-text {
             font-size: 16px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .lawyer-card {
+            background-color: #f2f7fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2b576d;
+        }
+        .lawyer-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2b576d;
+        }
+        .lawyer-link {
+            font-size: 16px;
+            color: #4584a4;
+            text-decoration: none;
+        }
+        .lawyer-link:hover {
+            text-decoration: underline;
         }
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <h2 style="text-align: center; color: black; font-weight: bold; margin-bottom: 30px;">
-        Connect with a Lawyer
-    </h2>
-    """,
-    unsafe_allow_html=True
-)
-st.markdown('<div class="desc">Need legal help after an accident? Use one of the trusted firms below to get started.</div>', unsafe_allow_html=True)
+# Page content
+st.markdown('<div class="title">Contact Representation</div>', unsafe_allow_html=True)
 
+st.markdown("""
+<div class="body-text">
+If you've recently experienced an accident and believe you may need legal support, here are some trusted firms you can contact for a consultation. These are not endorsements, but helpful starting points for exploring your options.
+</div>
+""", unsafe_allow_html=True)
+
+# Lawyer listings
 lawyers = [
     {
         "name": "Car Injury Justice – Free Consultation",
@@ -90,13 +74,10 @@ lawyers = [
     }
 ]
 
-cols = st.columns(2)
-
-for idx, lawyer in enumerate(lawyers):
-    with cols[idx % 2]:
-        st.markdown(f"""
-            <div class="lawyer-card">
-                <h2>{lawyer['name']}</h2>
-                <a class="lawyer-link" href="{lawyer['link']}" target="_blank">Visit Website</a>
-            </div>
-        """, unsafe_allow_html=True)
+for lawyer in lawyers:
+    st.markdown(f"""
+        <div class="lawyer-card">
+            <div class="lawyer-name">{lawyer['name']}</div>
+            <a class="lawyer-link" href="{lawyer['link']}" target="_blank">Visit Website</a>
+        </div>
+    """, unsafe_allow_html=True)
