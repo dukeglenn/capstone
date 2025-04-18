@@ -1,0 +1,14 @@
+import os
+
+# Define folder and file path
+config_dir = ".streamlit"
+config_file = os.path.join(config_dir, "config.toml")
+
+# Create the .streamlit directory if it doesn't exist
+os.makedirs(config_dir, exist_ok=True)
+
+# Write light mode config
+with open(config_file, "w") as f:
+    f.write("[theme]\nbase=\"light\"\n")
+
+print("✅ Light mode config written to .streamlit/config.toml")
